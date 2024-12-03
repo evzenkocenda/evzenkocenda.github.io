@@ -1,0 +1,175 @@
+                                                              BDS 8.21
+																				  
+The program on this disk is:
+
+                       BDS.EXE
+
+and is invoked by typing BDS at the DOS prompt.  The BDS program requires the
+8087 or 80287 math co-processor chip, and your computer may hang if one is not
+installed.  Just reach for the Big Red Switch if that happens!  The program
+should be self explanatory.  Here is some information about the way the
+program works:
+
+    Each program can process up to 7500 (scalar) observations.  If the data
+file has more than 7500 data entries, only the first 7500 are read in.  The
+input data must be in an ASCII file in the following formats, which can be
+mixed within the data file:
+
+                       321455     INTEGER FORMAT
+                       32.1455    REAL FORMAT
+                       1.37E+12   FLOATING POINT FORMAT
+
+An observation between 0 and 1 must be preceeded by a 0:
+
+                       0.237
+
+and negative numbers must have the negative sign next to the leading digit:
+
+                      -3.475E+2
+
+    Each observation MUST be separated by one of the following:
+
+                       One or more blanks;
+                       A carriage return;
+                       A tab character.
+
+    NO OTHER CHARACTERS can be in the data file.  The last entry must be
+followed by an end of file marker.  (If the last data entry is followed by
+a carriage return followed by an end of file marker, the program will read
+an extra observation with a value of 0.  A blank line will also be read as
+an observation with a value of zero.) The range of values is -1.67E+307
+to 1.67E+308.
+
+    The program is menu driven.  Use the arrow keys to move around the menu,
+and the ENTER key to make a selection.  There is some on line help which can
+be called up with Alt-H.  Here are some of the features of the program:
+
+    There is a data diagnostic which will give you a description of
+the data:  its mean, standard deviation, maximum value, minimum value,
+spread, and the standard deviation divided by the spread.
+
+    The program will prompt you for the data filename.  If the data file is
+NOT on the logged drive and directory, be sure to specify the path name along
+with the data filename and extension.
+
+    The program will also prompt you for a file to which to save the results
+as you calculate them (optional).  Each time you calculate a new set of
+results, you can choose to save them if you wish by selecting the appropriate
+option.  If you change the data file during your calculations that will auto-
+matically be recorded in the output file.  After you record the calculations,
+you can choose to close the output file, or to make some more calculations and
+record them to the same file.
+
+    To print the results, use the filename PRN when you are prompted for the
+output filename.  Your results will go to your printer instead of a file.  Be
+sure to have your printer on, otherwise the program will abort.
+
+    You may chose to work on a subset of the data, in which case you will be
+prompted for the initial observation you would like to start at and the total
+number of observations you want to include.
+
+    In order to calculate the BDS statistic, you must specify a value of epsilon
+and m.  The value of epsilon that you choose will be multiplied by the spread of
+the data in the subset that you have chosen.  (If no subset is chosen, epsilon
+will be multiplied by the spread of the data set.)  If you want to choose a
+value of epsilon relative to the standard deviation of the data set, use the
+value of SD/Spread in the descriptive statistics section as the reference value.
+
+
+    The screen output consists of C1, Cm, C and K which are the integer number
+of observations in each category.  These are normalized by the maximum number
+possible, and displayed as c1, cm, c and k.  The value of Ln(cm)/Ln(๎) is
+displayed as เm.  The BDS statistic, its standard deviation and the ratio of
+the two are also displayed.  A typical screen looks like this:
+
+
+
+
+ษอออออออออออออออออออออออออออปษออออออออออป
+บ Input File : RAND1000.000 บบ N = 1000 บ
+ศอออออออออออออออออออออออออออผศออออออออออผ
+ษออออออออออออออออออออออออออออออป
+บ Output File : D:RAND1000.OUT บ
+ศออออออออออออออออออออออออออออออผ
+ษออออออออออออออออออออออออปษอออออออป           March 2, 1988          11:34 am
+บ Epsilon =  9.000E-0002 บบ m = 2 บ       ึฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤท
+ศออออออออออออออออออออออออผศอออออออผ       บ     Select a Input File            บ
+                                          บ     Descriptive Statistics         บ
+     C   =        2872                    บ     Choose Epsilon                 บ
+     K   =       92192                    บ     Choose the Dimension, m        บ
+     C1  =        1386                    บ     Calculate Cm & BDS Statistic   บ
+     Cm  =         369                    บ     Write the Results to a File    บ
+     c   =   2.8720E-0001                 บ     Close the Output File          บ
+     k   =   9.2192E-0002                 บ     Record Multiple Calculations   บ
+     c1  =   2.8000E-0001                 บ     Select a Subset of the Data    บ
+     cm  =   7.6067E-0002                 บ     Transform the Data             บ
+     เm  =   1.0699E+0000                 บ     DOS Services                   บ
+    BDS  =  -2.3215E-0002                 บ     Exit from this Program         บ
+    SD   =   1.9416E-0002                 บ                                    บ
+ BDS/SD  =  -1.1957E+0000                 บ         ENTER   Alt-H=Help       บ
+   Time calculating Cm:      0.24 sec     ำฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฝ
+ Time calculating C, K:      0.38 sec
+
+
+
+
+    The time to calculate the statistics is recorded to assist you in
+determining how long a program that does multiple calculations will take.
+
+     If you elect to write the results to a file, the following is a sample of
+the information that is written to the file:
+
+
+FILENAME: VW.WK
+Initial Obs :    1,  Num Obs : N =  100,  SD/Spread =  1.4335E-0001
+Epsilon     m       C1         Cm          BDS            SD           BDS/SD
+0.070000    2       1709        690   2.2924E-0001   6.2714E-0002   3.6553E+0000
+0.095000    2       2237       1108   2.4054E-0001   8.7262E-0002   2.7566E+0000
+
+FILENAME: UFLOWS2.1
+Initial Obs :    1,  Num Obs : N =  154,  SD/Spread =  2.0706E-0001
+Epsilon     m       C1         Cm          BDS            SD           BDS/SD
+0.100000    2       3238       1328   4.7826E-0001   2.4825E-0002   1.9265E+0001
+0.150000    2       4688       2555   7.5924E-0001   4.4437E-0002   1.7086E+0001
+
+
+      Technical information on the computational methods used in this program:
+
+             Cm and C1 are U-statistics.
+             C and K are V-statistics.
+             The BDS statistic is:  SQRT(N - M + 1) * (Cm - C1^M).
+             The formula for the SD of the statistic is in Brock, Dechert
+                 and Scheinkman, "A Test for Independence based on the
+                 Correlation Dimension."
+
+
+     The date and time are updated every minute.  They are NOT updated
+during calculations (the fewer interrupts there are, the faster the program
+goes), nor are they updated during responsive input, so the time may lag
+behind sometimes.
+
+     There is also a utility program, LIST.COM which is much better than
+the DOS function TYPE.  It is invoked by typing
+
+                         LIST filename.ext
+
+at the DOS prompt.  You can use this to look at your results after you have
+stored them on a file, or to read any ASCII file.  It's a freebie in the
+public domain.
+
+     The program was developed using Turbo Pascal 4.0 (C) Borland, Inc. and
+the macro assembler MASM 5.0 (C) Microsoft, Inc.  Feel free to use the
+diskette (with appropriate citations, of course!) and to distribute it.
+
+     Please send your comments, wish list, and bugs you may find in the program
+to me.  If you have received this program from someone else, drop me a postcard
+and I'll put you on my mailing list for updates.  Thanks.
+
+
+                       W. Davis Dechert
+                       Department of Economics
+                       University of Houston
+                       Houston, Texas 77204-5882
+                       (713) 743-3806
+
+       ARPANET/BITNET: econ7i@uhvax1.uh.edu

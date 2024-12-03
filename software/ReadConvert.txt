@@ -1,0 +1,9 @@
+This program reads the output file from the BDS program and calculates
+the ols regression values for the slopes of the observed ln(Cm) versus
+ln(epsilon) lines. For the iid case these are in theory equal to m.
+
+This program assumes that m = 2,...,10 and that there are 41 values
+of epsilon.
+
+The program CONVERT.EXE runs under DOS and needs to have LIST.COM in
+the same directory. The data files can be in any directory.
